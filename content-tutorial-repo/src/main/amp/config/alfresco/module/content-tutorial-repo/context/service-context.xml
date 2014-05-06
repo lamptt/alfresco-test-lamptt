@@ -40,5 +40,20 @@
 			<ref bean="NodeService" />
 		</property>
 	</bean>
+	
+	<bean id="set-web-flag" class="com.someco.action.executer.SetWebFlag" parent="action-executer">
+        <property name="nodeService">
+            <ref bean="NodeService" />
+        </property>
+    </bean>
+    <bean id="${project.artifactId}_actionResourceBundles" parent="actionResourceBundles">
+        <property name="resourceBundles">
+            <list>
+                <value>alfresco.module.${project.artifactId}.messages.somecoactions</value>
+            </list>
+        </property>
+    </bean>
+    
+    
 
 </beans>
