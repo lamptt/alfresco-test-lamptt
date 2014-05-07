@@ -59,6 +59,7 @@ public class MoveReplacedActionTest {
     
     @Test
     public void testExecuteAction() {
+    	log.debug("1. Dang trong test");
     	AuthenticationUtil.setFullyAuthenticatedUser(ADMIN_USER_NAME);
         NodeRef companyHome = nodeLocatorService.getNode(CompanyHomeNodeLocator.NAME, null, null);
         
