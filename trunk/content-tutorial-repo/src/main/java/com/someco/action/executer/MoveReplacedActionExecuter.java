@@ -15,8 +15,13 @@ import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.namespace.NamespaceService;
 import org.alfresco.service.namespace.QName;
 import org.alfresco.service.namespace.QNamePattern;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class MoveReplacedActionExecuter extends ActionExecuterAbstractBase {
+	
+	Log log = LogFactory.getLog(MoveReplacedActionExecuter.class);
+	
     public static final String NAME = "move-replaced";
     public static final String PARAM_DESTINATION_FOLDER = "destination-folder";
     
@@ -36,14 +41,17 @@ public class MoveReplacedActionExecuter extends ActionExecuterAbstractBase {
      * @see org.alfresco.repo.action.executer.ActionExecuter#execute(org.alfresco.repo.ref.NodeRef, org.alfresco.repo.ref.NodeRef)
      */
     public void executeImpl(Action ruleAction, NodeRef actionedUponNodeRef) {
+    	log.debug("1. Dang o trong executeImpl ne");
         // get the replaces associations for this node
         List<AssociationRef> assocRefs = nodeService.getTargetAssocs(actionedUponNodeRef, ((QNamePattern) QName.createQName(NamespaceService.CONTENT_MODEL_1_0_URI, "replaces")) );
 
         // if there are none, return
         if (assocRefs.isEmpty()) {
         	// no work to do, return
+        	log.debug("1.1. assocRefs rong no work");
         	return;
         } else {
+        	log.debug("1.2. assocRefs co du lieu");
         	NodeRef destinationParent = (NodeRef)ruleAction.getParameterValue(PARAM_DESTINATION_FOLDER);
         	for (AssociationRef assocNode : assocRefs) {
                 // create a noderef for the replaces association
@@ -51,6 +59,7 @@ public class MoveReplacedActionExecuter extends ActionExecuterAbstractBase {
                 // if the node exists
                 if (this.nodeService.exists(targetNodeRef) == true) {
 			        try {
+			        	log.debug("1.2.1 thuc hien so sanh gi do");
 			            fileFolderService.move(targetNodeRef, destinationParent, null);
 			        } catch (FileNotFoundException e) {
 			            // Do nothing
