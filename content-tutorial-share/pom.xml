@@ -67,6 +67,12 @@
             <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+        	<groupId>org.springframework.extensions.surf</groupId>
+        	<artifactId>spring-webscripts</artifactId>
+        	<version>1.2.0-M14</version>
+        	<scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <!-- This repository is only needed to retrieve Alfresco parent POM. 

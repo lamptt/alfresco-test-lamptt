@@ -24,6 +24,7 @@
          <list>
          	<value>alfresco.module.${project.artifactId}.messages.scModel</value>
          	<value>alfresco.module.${project.artifactId}.messages.scActions</value>
+         	<value>alfresco.module.${project.artifactId}.messages.scRatingsModel</value>
          </list>
       </property>
    </bean>
