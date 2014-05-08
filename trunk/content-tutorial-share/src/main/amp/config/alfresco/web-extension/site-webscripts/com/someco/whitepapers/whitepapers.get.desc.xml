@@ -1,0 +1,5 @@
+<webscript>
+    <shortname>Get all whitepapers</shortname>
+    <description>Returns a list of active whitepapers</description>
+    <url>/someco/whitepapers</url>
+</webscript>
